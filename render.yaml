@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: generator-store
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: STORE_NAME
+        value: ጀነሬተር ስቶር
+      - key: WA_NUMBER
+        value: 251911234567
+      - key: STORE_PHONE
+        value: +251911234567
+      - key: ADMIN_SECRET
+        value: change-me-before-deploy
+      - key: TELEGRAM_BOT_TOKEN
+        value: change-me-with-bot-token
+      - key: TELEGRAM_CHAT_IDS
+        value: change-me-with-chat-ids-comma-separated
+      - key: DATABASE_URL
+        fromDatabase:
+          name: generator-store-db
+          property: connectionString
+
+databases:
+  - name: generator-store-db
+    plan: free
