@@ -25,6 +25,8 @@ services:
         fromDatabase:
           name: generator-store-db
           property: connectionString
+      - key: ALLOWED_ORIGINS
+        value: ''
 
 databases:
   - name: generator-store-db
