@@ -3,6 +3,7 @@ const { Router } = require('express');
 const { getDb, prepare } = require('../db/database');
 const adminAuth = require('../middleware/adminAuth');
 const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
 const path = require('path');
 const fs = require('fs');
 
@@ -14,16 +15,24 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Multer storage engine configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
-});
+// Configure Cloudinary if CLOUDINARY_URL is set
+const useCloudinary = !!process.env.CLOUDINARY_URL;
+if (useCloudinary) {
+  cloudinary.config({ secure: true });
+}
+
+// Multer storage engine configuration. Use memory storage when Cloudinary is enabled.
+const storage = useCloudinary
+  ? multer.memoryStorage()
+  : multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, uploadDir);
+      },
+      filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+      }
+    });
 
 const upload = multer({
   storage,
@@ -42,9 +51,22 @@ const upload = multer({
 // Image upload route
 router.post('/upload', adminAuth, upload.single('image'), (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+
+    if (useCloudinary) {
+      // Upload buffer to Cloudinary
+      const b64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      cloudinary.uploader.upload(b64, { folder: 'generator-store' })
+        .then(result => {
+          res.json({ imageUrl: result.secure_url });
+        })
+        .catch(err => {
+          console.error('Cloudinary upload error:', err);
+          res.status(500).json({ error: 'Cloudinary upload failed' });
+        });
+      return;
     }
+
     const imageUrl = `/uploads/${req.file.filename}`;
     res.json({ imageUrl });
   } catch (err) {

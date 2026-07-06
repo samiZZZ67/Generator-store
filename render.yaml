@@ -27,6 +27,8 @@ services:
           property: connectionString
       - key: ALLOWED_ORIGINS
         value: ''
+      - key: CLOUDINARY_URL
+        value: ''
 
 databases:
   - name: generator-store-db

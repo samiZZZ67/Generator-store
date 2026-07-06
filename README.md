@@ -165,6 +165,8 @@ The backend serves the storefront directly from `frontend/`, so you do not need 
 - `TELEGRAM_CHAT_IDS=<chat-id1,chat-id2>`
 - `ALLOWED_ORIGINS=` *(optional — leave blank to allow all origins)*
 
+- `CLOUDINARY_URL=` *(optional — set to your Cloudinary URL to enable remote image uploads)*
+
 Render will run:
 
 ```bash
