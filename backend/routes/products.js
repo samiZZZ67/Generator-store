@@ -113,7 +113,8 @@ router.post('/', adminAuth, async (req, res, next) => {
     const { 
       name_am, name_en, cat_id, price, original_price, 
       marketing_desc_am = '', marketing_desc_en = '', 
-      in_stock = 1, icon = '⚡', desc_am = '', desc_en = '', image_url 
+      in_stock = 1, icon = '⚡', desc_am = '', desc_en = '', image_url,
+      active = 1
     } = req.body;
     
     if (!name_am || !name_en || !cat_id || price == null) {
@@ -127,16 +128,17 @@ router.post('/', adminAuth, async (req, res, next) => {
       INSERT INTO products (
         name_am, name_en, cat_id, price, original_price, 
         marketing_desc_am, marketing_desc_en, 
-        in_stock, icon, desc_am, desc_en, image_url
+        in_stock, icon, desc_am, desc_en, image_url, active
       ) VALUES (
         $name_am, $name_en, $cat_id, $price, $original_price, 
         $marketing_desc_am, $marketing_desc_en, 
-        $in_stock, $icon, $desc_am, $desc_en, $image_url
+        $in_stock, $icon, $desc_am, $desc_en, $image_url, $active
       )
     `).run({ 
       name_am, name_en, cat_id, price, original_price: original_price || null,
       marketing_desc_am, marketing_desc_en,
-      in_stock, icon, desc_am, desc_en, image_url: image_url || null 
+      in_stock, icon, desc_am, desc_en, image_url: image_url || null,
+      active
     });
 
     const created = await prepare(db, `SELECT * FROM products WHERE id = $id`).get({ id: result.lastInsertRowid });

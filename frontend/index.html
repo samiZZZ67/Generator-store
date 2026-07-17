@@ -285,7 +285,7 @@ footer{background-color:var(--bg2);background-image:linear-gradient(180deg,rgba(
       🛒
       <span class="cart-badge latin" id="cartBadge" style="display:none">0</span>
     </button>
-    <a class="call-link lang-fade" data-key="callUs" href="tel:+251911234567">ይደውሉ</a>
+    <a class="call-link lang-fade" data-key="callUs" id="topCallLink" href="tel:+251911234567">ይደውሉ</a>
   </div>
 </nav>
 
@@ -305,7 +305,7 @@ footer{background-color:var(--bg2);background-image:linear-gradient(180deg,rgba(
     <p class="hero-sub lang-fade" data-key="heroSub">ጥራት ያለው ጀነሬተር፣ ስፔር ፓርት እና ጥገና — ፈጣን ትዕዛዝ</p>
     <div class="hero-btns">
       <button class="btn-primary lang-fade" data-key="browseProd" onclick="document.querySelector('.products-section').scrollIntoView({behavior:'smooth'})">ምርቶች ይመልከቱ</button>
-      <a class="btn-secondary lang-fade" data-key="callNow" href="tel:+251911234567">አሁን ይደውሉ</a>
+      <a class="btn-secondary lang-fade" data-key="callNow" id="heroCallLink" href="tel:+251911234567">አሁን ይደውሉ</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
@@ -341,10 +341,10 @@ footer{background-color:var(--bg2);background-image:linear-gradient(180deg,rgba(
   <div class="no-results" id="noResults">
     <p class="no-results-text lang-fade" data-key="noResults">ምንም አልተገኘም። ሌላ ቃል ይሞክሩ ወይም ቀጥታ ያነጋግሩን</p>
     <button class="telegram-btn" onclick="openTelegram('')">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 3.44 1.72 6.51 4.43 8.44.32.18.71.06.86-.28l1.48-3.07c.12-.26.03-.57-.22-.74-1.35-.95-1.95-2.28-1.95-3.76 0-2.81 2.34-5.09 5.2-5.09 1.14 0 2.2.34 3.11.93.26.15.58.11.79-.1l1.83-1.83c.21-.21.25-.54.1-.79C18.53 4.05 15.43 3 12 3 5.37 3 0 8.37 0 15c0 3.63 1.87 6.84 4.75 8.81.58.44 1.38.14 1.55-.58l.84-3.22c.08-.31-.01-.64-.24-.87-1.2-1.15-1.88-2.66-1.88-4.31 0-4.35 3.86-7.88 8.68-7.88 2.34 0 4.51.9 6.16 2.4.26.24.63.27.92.08l2.42-1.83c.38-.29.39-.87.02-1.2C19.97 2.5 16.16 1 12 1z"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l16.4-6.6c.9-.4 1.7.2 1.5 1.1L18.7 20.1c-.2.8-.9 1.2-1.7.9l-4.6-1.7-2.1 2c-.5.4-1.2.2-1.4-.4L7 15.7 4 13.5c-.8-.3-.7-1.4.1-1.5z"/></svg>
       Telegram
     </button>
-    <button class="call-text-btn" onclick="window.location='tel:+251911234567'">ስልክ ይደውሉ</button>
+    <button class="call-text-btn" onclick="window.location='tel:' + WA_NUMBER">ስልክ ይደውሉ</button>
   </div>
 </section>
 
@@ -424,7 +424,7 @@ footer{background-color:var(--bg2);background-image:linear-gradient(180deg,rgba(
         <div class="modal-actions">
           <button class="btn-add-modal lang-fade" data-key="addCart" onclick="addToCartFromModal()">ወደ ጋሪ ጨምር</button>
           <button class="btn-telegram-modal lang-fade" data-key="orderTG" onclick="orderViaTelegram()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 3.44 1.72 6.51 4.43 8.44.32.18.71.06.86-.28l1.48-3.07c.12-.26.03-.57-.22-.74-1.35-.95-1.95-2.28-1.95-3.76 0-2.81 2.34-5.09 5.2-5.09 1.14 0 2.2.34 3.11.93.26.15.58.11.79-.1l1.83-1.83c.21-.21.25-.54.1-.79C18.53 4.05 15.43 3 12 3 5.37 3 0 8.37 0 15c0 3.63 1.87 6.84 4.75 8.81.58.44 1.38.14 1.55-.58l.84-3.22c.08-.31-.01-.64-.24-.87-1.2-1.15-1.88-2.66-1.88-4.31 0-4.35 3.86-7.88 8.68-7.88 2.34 0 4.51.9 6.16 2.4.26.24.63.27.92.08l2.42-1.83c.38-.29.39-.87.02-1.2C19.97 2.5 16.16 1 12 1z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l16.4-6.6c.9-.4 1.7.2 1.5 1.1L18.7 20.1c-.2.8-.9 1.2-1.7.9l-4.6-1.7-2.1 2c-.5.4-1.2.2-1.4-.4L7 15.7 4 13.5c-.8-.3-.7-1.4.1-1.5z"/></svg>
             <span class="lang-fade" data-key="orderTG">በ Telegram ዓዝ</span>
           </button>
         </div>
@@ -447,7 +447,7 @@ footer{background-color:var(--bg2);background-image:linear-gradient(180deg,rgba(
 <!-- WAB FAB -->
 <button class="telegram-fab" onclick="openTelegram('')" aria-label="Telegram">
   <div class="telegram-pulse"></div>
-  <svg class="telegram-fab-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 3.44 1.72 6.51 4.43 8.44.32.18.71.06.86-.28l1.48-3.07c.12-.26.03-.57-.22-.74-1.35-.95-1.95-2.28-1.95-3.76 0-2.81 2.34-5.09 5.2-5.09 1.14 0 2.2.34 3.11.93.26.15.58.11.79-.1l1.83-1.83c.21-.21.25-.54.1-.79C18.53 4.05 15.43 3 12 3 5.37 3 0 8.37 0 15c0 3.63 1.87 6.84 4.75 8.81.58.44 1.38.14 1.55-.58l.84-3.22c.08-.31-.01-.64-.24-.87-1.2-1.15-1.88-2.66-1.88-4.31 0-4.35 3.86-7.88 8.68-7.88 2.34 0 4.51.9 6.16 2.4.26.24.63.27.92.08l2.42-1.83c.38-.29.39-.87.02-1.2C19.97 2.5 16.16 1 12 1z"/></svg>
+  <svg class="telegram-fab-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l16.4-6.6c.9-.4 1.7.2 1.5 1.1L18.7 20.1c-.2.8-.9 1.2-1.7.9l-4.6-1.7-2.1 2c-.5.4-1.2.2-1.4-.4L7 15.7 4 13.5c-.8-.3-.7-1.4.1-1.5z"/></svg>
   <span class="telegram-tooltip lang-fade" data-key="askUs">ዝም ብሎ ጠይቁ</span>
 </button>
 
@@ -519,6 +519,9 @@ async function loadData() {
       document.querySelectorAll('[data-key="storeName"]').forEach(el => el.textContent = t('storeName'));
       document.querySelectorAll('[data-key="phone"]').forEach(el => el.textContent = t('phone'));
       document.querySelectorAll('a[href^="tel:"]').forEach(el => el.href = `tel:${config.phone}`);
+      WA_NUMBER = config.waNumber;
+      document.getElementById('topCallLink').href = `tel:${WA_NUMBER}`;
+      document.getElementById('heroCallLink').href = `tel:${WA_NUMBER}`;
     }
 
     // 2. Fetch categories
@@ -721,7 +724,7 @@ function renderProducts(){
         <div class="card-actions">
           <button class="btn-view" onclick="openModal(${p.id})">${t('viewDetails')}</button>
           <button class="btn-cart" id="cartBtn${p.id}" onclick="addToCart(${p.id},this)">${t('addCart')}</button>
-          <button class="btn-call" onclick="window.location='tel:+251911234567'">${t('callNow')}</button>
+          <button class="btn-call" onclick="window.location='tel:' + WA_NUMBER">${t('callNow')}</button>
         </div>
       </div>
     </div>`;
@@ -826,6 +829,9 @@ async function orderCartViaTelegram(){
     const name = currentLang==='am'?x.am:x.en;
     const desc = currentLang==='am'?x.descAm:x.descEn;
     msg += `- ${name}: ${desc} x${x.qty} @ ${fmt(x.price)} = ${fmt(x.price*x.qty)}\n`;
+    if (x.imageUrl) {
+      msg += `${currentLang==='am'?'ፎቶ: ':'Photo: '}${x.imageUrl}\n`;
+    }
   });
   const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
   msg += (currentLang==='am'?'\nጠቅላላ: ':'\nTotal: ')+fmt(total)+`\n\nTelegram: @tariku041994`;

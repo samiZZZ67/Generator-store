@@ -198,6 +198,7 @@ function applySchemaSqlite() {
   try { _db.exec("ALTER TABLE products ADD COLUMN original_price INTEGER;"); } catch (e) {}
   try { _db.exec("ALTER TABLE products ADD COLUMN marketing_desc_am TEXT DEFAULT '';"); } catch (e) {}
   try { _db.exec("ALTER TABLE products ADD COLUMN marketing_desc_en TEXT DEFAULT '';"); } catch (e) {}
+  try { _db.exec("ALTER TABLE products ADD COLUMN active INTEGER NOT NULL DEFAULT 1;"); } catch (e) {}
 }
 
 /* ─── Internal SQLite query helpers ─────────────────────────────────────────── */
